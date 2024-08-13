@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.customerServices.CustomerService;
+import com.example.demo.customerServices.SunBaseData;
+import com.example.demo.dtos.SunBaseResponse;
 import com.example.demo.model.CustomerModel;
 
  
@@ -29,10 +32,12 @@ import com.example.demo.model.CustomerModel;
 public class CustomerController {
 
 	   private final CustomerService customerService;
+	   private final SunBaseData sunbaseData;
 
 	    @Autowired
-	    public CustomerController(CustomerService customerService) {
+	    public CustomerController(CustomerService customerService,SunBaseData sunbaseData) {
 	        this.customerService = customerService;
+	        this.sunbaseData = sunbaseData;
 	    }
 	
 	@GetMapping
@@ -104,4 +109,18 @@ public class CustomerController {
 	            return customerService.getCustomers(pageable);
 	        }
 	    }
+	    
+	    @GetMapping("/userList")
+	    public ResponseEntity<List<CustomerModel>> getAllUser(){
+	    	List< CustomerModel> data = sunbaseData.getUserList();
+	    	if(data == null) {
+	    		return (ResponseEntity<List<CustomerModel>>) ResponseEntity.badRequest( );
+	    	}
+	    	return ResponseEntity.ok(data );
+	    }
+	    
+	    
+	    
+	    
+	    
 }

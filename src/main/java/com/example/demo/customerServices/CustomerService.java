@@ -42,19 +42,13 @@ public class CustomerService {
 	    }
 	 
 	 //delete customer by id
-	 public  String deleteCustomer(Long id) {
-	 List<CustomerModel> customers = customerRepository.findAll();
-	 Iterator<CustomerModel> iterator = customers.iterator();
-	 while(iterator.hasNext()) {
-		 CustomerModel ids = iterator.next();
-		 if(ids.getId()==id) {
-			 customerRepository.deleteById(id);
-			 return null;
-		 }
-	 }
-		 
-	        
-	        return "Id number not found";
+	    public String deleteCustomer(Long id) {
+	        if (customerRepository.existsById(id)) {
+	            customerRepository.deleteById(id);
+	            return null; // Indicates success
+	        } else {
+	            return "Customer not found"; // Indicates failure
+	        }
 	    }
 
 	public Page<CustomerModel> getCustomers(Pageable  pageable) {

@@ -1,7 +1,9 @@
 package com.example.demo.customerRepository;
 
  
- import org.springframework.data.domain.Page;
+ import java.util.Optional;
+
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +19,8 @@ public interface CustomerRepository extends JpaRepository<CustomerModel, Long> {
 	           "LOWER(c.email) LIKE LOWER(CONCAT('%', :search, '%')) OR " +
 	           "LOWER(c.city) LIKE LOWER(CONCAT('%', :search, '%'))")
 	    Page<CustomerModel> searchCustomers(@Param("search") String search, Pageable pageable);
- 
+
+	   Optional<CustomerModel> findByEmail(String uuid); 
+
 
 }

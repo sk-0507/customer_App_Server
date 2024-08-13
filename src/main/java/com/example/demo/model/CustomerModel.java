@@ -1,5 +1,9 @@
 package com.example.demo.model;
 
+import org.hibernate.annotations.DialectOverride.Version;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,18 +17,26 @@ public class CustomerModel {
 @GeneratedValue(strategy =GenerationType.IDENTITY)
 private Long id;
 
+@JsonProperty("first_name")
 private String firstName;
+
+
+@JsonProperty("last_name")
 private String lastName;
+
 private String street;
 private String address;
 private String city;
 private String state;
 private String email;
 private String phone;
+private String uuid;
 
+@Version(major = 0)
+private Long version; 
 
 public CustomerModel() {
-	super();
+	 
 	// TODO Auto-generated constructor stub
 }
 public CustomerModel(Long id, String firstName, String lastName, String street, String address, String city,
@@ -39,6 +51,14 @@ public CustomerModel(Long id, String firstName, String lastName, String street, 
 	this.state = state;
 	this.email = email;
 	this.phone = phone;
+}
+
+
+public String getUuid() {
+	return uuid;
+}
+public void setUuid(String uuid) {
+	this.uuid = uuid;
 }
 public Long getId() {
 	return id;
@@ -94,12 +114,21 @@ public String getPhone() {
 public void setPhone(String phone) {
 	this.phone = phone;
 }
+
+
+public Long getVersion() {
+	return version;
+}
+public void setVersion(Long version) {
+	this.version = version;
+}
 @Override
 public String toString() {
 	return "CustomerModel [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", street=" + street
 			+ ", address=" + address + ", city=" + city + ", state=" + state + ", email=" + email + ", phone=" + phone
-			+ "]";
+			+ ", uuid=" + uuid + ", version=" + version + "]";
 }
+ 
 
 
 }
