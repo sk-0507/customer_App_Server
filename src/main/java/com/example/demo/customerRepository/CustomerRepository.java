@@ -20,7 +20,7 @@ public interface CustomerRepository extends JpaRepository<CustomerModel, Long> {
 	           "LOWER(c.city) LIKE LOWER(CONCAT('%', :search, '%'))")
 	    Page<CustomerModel> searchCustomers(@Param("search") String search, Pageable pageable);
 
-	   Optional<CustomerModel> findByEmail(String uuid); 
+	   Optional<CustomerModel> findByUuid(String uuid); 
 
 
 }

@@ -38,8 +38,8 @@ public class SunBaseData {
 	        this.customerRepository = customerRepository;
 	    }
 	  
-	public Optional<CustomerModel> getEmailByEmailId(String uuid) {
-		return customerRepository.findByEmail(uuid);
+	public Optional<CustomerModel> getUuid(String uuid) {
+		return customerRepository.findByUuid(uuid);
 	}
 	
 	
@@ -62,7 +62,7 @@ public class SunBaseData {
 	            List<CustomerModel> customers = response.getBody();
 	            if (customers != null) {
 	                for (CustomerModel customer : customers) {
-	                    Optional<CustomerModel> existingCustomer = customerRepository.findByEmail(customer.getUuid());
+	                    Optional<CustomerModel> existingCustomer = customerRepository.findByUuid(customer.getUuid());
 	                    if (existingCustomer.isEmpty()) {
 	                        customerRepository.save(customer);
 	                    }
