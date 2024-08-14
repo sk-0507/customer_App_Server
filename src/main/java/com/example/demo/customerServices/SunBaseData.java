@@ -86,17 +86,17 @@ public class SunBaseData {
 
 
 
-	private CustomerModel customerConverted(SunBaseResponse data1) {
-		// TODO Auto-generated method stub
-		CustomerModel cust = new CustomerModel();
-		cust.setFirstName(data1.getFirstName());
-		cust.setLastName(data1.getLastName());
-		cust.setEmail(data1.getEmail());
-		cust.setAddress(data1.getAddress());
-		cust.setCity(data1.getCity());
-		cust.setPhone(data1.getPhone());
-		cust.setState(data1.getState());
-		cust.setStreet(data1.getStreet());
-		return   cust;
-	}
+//	private CustomerModel customerConverted(SunBaseResponse data1) {
+//		// TODO Auto-generated method stub
+//		CustomerModel cust = new CustomerModel();
+//		cust.setFirstName(data1.getFirstName());
+//		cust.setLastName(data1.getLastName());
+//		cust.setEmail(data1.getEmail());
+//		cust.setAddress(data1.getAddress());
+//		cust.setCity(data1.getCity());
+//		cust.setPhone(data1.getPhone());
+//		cust.setState(data1.getState());
+//		cust.setStreet(data1.getStreet());
+//		return   cust;
+//	}
 }

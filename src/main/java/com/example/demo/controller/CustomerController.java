@@ -50,13 +50,13 @@ public class CustomerController {
 	        return customerService.saveCustomer(customer);
 	    }
 	  
-	  @GetMapping("/private/{id}")
+	  @GetMapping("/public/{id}")
 	    public ResponseEntity<CustomerModel> getCustomerById(@PathVariable Long id) {
 	        Optional<CustomerModel> customer = customerService.getCustomerById(id);
 	        return customer.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 	    }
 	  
-	  @PutMapping("/private/{id}")
+	  @PutMapping("/public/{id}")
 	    public ResponseEntity<CustomerModel> updateCustomer(@PathVariable Long id, @RequestBody CustomerModel customerDetails) {
 	        Optional<CustomerModel> customer = customerService.getCustomerById(id);
 	        if (customer.isPresent()) {
@@ -77,7 +77,7 @@ public class CustomerController {
 	        }
 	    }
 	  
-	  @DeleteMapping("/private/{id}")
+	  @DeleteMapping("/public/{id}")
 	    public ResponseEntity<CustomerModel> deleteCustomer(@PathVariable Long id) {
 		  String check = customerService.deleteCustomer(id);
 		   if(check!=null) {
@@ -93,7 +93,7 @@ public class CustomerController {
 		  return ResponseEntity.ok(customerService.getAllCustomer());
 	  }
 	  
-	    @GetMapping("/private/ListOfCustomer")
+	    @GetMapping("/public/ListOfCustomer")
 	    public Page<CustomerModel> getCustomers(@RequestParam(defaultValue = "0") int page,
 	                                       @RequestParam(defaultValue = "10") int size,
 	                                       @RequestParam(defaultValue = "id") String sort,
@@ -110,7 +110,7 @@ public class CustomerController {
 	        }
 	    }
 	    
-	    @GetMapping("/userList")
+	    @GetMapping("/public/userList")
 	    public ResponseEntity<List<CustomerModel>> getAllUser(){
 	    	List< CustomerModel> data = sunbaseData.getUserList();
 	    	if(data == null) {
